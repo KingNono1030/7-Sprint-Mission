@@ -1,6 +1,8 @@
 const form = document.querySelector('.main-form');
 const button = document.querySelector('.main-form button');
 
+const passwordErrorMessage = '비밀번호를 입력해주세요';
+
 function checkFormFilled({ target }) {
   validateInputs(target);
   const inputs = [...document.querySelectorAll('.label_input')];
@@ -28,15 +30,15 @@ function validateEmail(target) {
   const value = target.value.trim();
   if (value === '')
     return { errorMessage: '이메일을 입력해주세요', hasError: true };
-  if (!isEmail(value))
+  if (!isValidEmail(value))
     return { errorMessage: '잘못된 이메일 형식입니다', hasError: true };
   return { errorMessage: '', hasError: false };
 }
 
-function isEmail(emailAddress) {
+function isValidEmail(emailAddress) {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-  const isEmail = emailRegex.test(emailAddress);
-  return isEmail;
+  const isValid = emailRegex.test(emailAddress);
+  return isValid;
 }
 
 function validateNickname(target) {
@@ -49,7 +51,7 @@ function validateNickname(target) {
 function validatePassword(target) {
   const value = target.value.trim();
   if (value === '')
-    return { errorMessage: '비밀번호를 입력해주세요', hasError: true };
+    return { errorMessage: passwordErrorMessage, hasError: true };
   if (value.length < 8)
     return { errorMessage: '비밀번호를 8자 이상 입력해주세요', hasError: true };
   return { errorMessage: '', hasError: false };
@@ -60,7 +62,7 @@ function validatePasswordRepeat(target) {
   const passwordValue = inputPassword.value.trim();
   const value = target.value.trim();
   if (value === '')
-    return { errorMessage: '비밀번호를 입력해주세요', hasError: true };
+    return { errorMessage: passwordErrorMessage, hasError: true };
   if (value !== passwordValue)
     return { errorMessage: '비밀번호가 일치하지 않습니다', hasError: true };
   return { errorMessage: '', hasError: false };
