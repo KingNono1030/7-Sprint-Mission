@@ -50,9 +50,10 @@ function validateNickname(target) {
 
 function validatePassword(target) {
   const value = target.value.trim();
+  const isLongEnough = target.value < 8;
   if (value === '')
     return { errorMessage: passwordErrorMessage, hasError: true };
-  if (value.length < 8)
+  if (isLongEnough)
     return { errorMessage: '비밀번호를 8자 이상 입력해주세요', hasError: true };
   return { errorMessage: '', hasError: false };
 }
