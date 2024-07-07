@@ -1,5 +1,3 @@
-import '../styles/pageButton.css';
-
 export default function PaginationButtons({
   onClick,
   page,
