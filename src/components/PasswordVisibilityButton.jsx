@@ -5,12 +5,13 @@ const visibility = {
   on: visibilityOnImg,
   off: visibilityOffImg,
 };
-export default function PasswordVisibilityButton() {
+export default function PasswordVisibilityButton({ onClick }) {
   return (
     <img
-      className="absolute bottom-8 right-6"
+      className='absolute bottom-6 right-6'
       src={visibility.on}
-      alt="비밀번호 보기/가리기"
+      alt='비밀번호 보기/가리기'
+      onClick={onClick}
     />
   );
 }
