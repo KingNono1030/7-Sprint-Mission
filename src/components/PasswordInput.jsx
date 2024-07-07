@@ -1,7 +1,7 @@
 import useToggle from '../hooks/useToggle';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 
-export default function LabelInput({
+export default function PasswordInput({
   onChange,
   value = '',
   labelHeader = '',
@@ -30,7 +30,10 @@ export default function LabelInput({
           className={`w-full h-14 px-6 py-4 mb-2 rounded-xl bg-gray-100 text-base font-normal placeholder-gray-400 ${classNameInput}`}
           required
         />
-        <PasswordVisibilityButton onClick={togglePasswordVisibility} />
+        <PasswordVisibilityButton
+          onClick={togglePasswordVisibility}
+          show={isPasswordVisible}
+        />
       </div>
     </label>
   );
