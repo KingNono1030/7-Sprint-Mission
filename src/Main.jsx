@@ -6,20 +6,22 @@ import ItemPage from './pages/ItemPage.jsx';
 import AddItemPage from './pages/AddItemPage';
 import LogInPage from './pages/LogInPage';
 import SignUpPage from './pages/SignUpPage';
+import PageNotFound from './pages/PageNotFound';
 
 function Main() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path='/' element={<App />}>
           <Route index element={<LandingPage />} />
-          <Route path="items">
+          <Route path='items'>
             <Route index element={<ItemListPage />} />
-            <Route path=":productId" element={<ItemPage />} />
+            <Route path=':productId' element={<ItemPage />} />
           </Route>
-          <Route path="additem" element={<AddItemPage />} />
-          <Route path="login" element={<LogInPage />} />
-          <Route path="signup" element={<SignUpPage />} />
+          <Route path='additem' element={<AddItemPage />} />
+          <Route path='login' element={<LogInPage />} />
+          <Route path='signup' element={<SignUpPage />} />
+          <Route path='*' element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
