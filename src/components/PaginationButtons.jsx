@@ -1,21 +1,5 @@
 import '../styles/pageButton.css';
 
-function PageButton({ children, onClick, isActive, isLoading }) {
-  const handleClick = () => {
-    if (!isLoading) {
-      onClick();
-    }
-  };
-  return (
-    <button
-      onClick={handleClick}
-      className={`page-button ${isActive ? 'page-button__active' : ''}`}
-    >
-      {children}
-    </button>
-  );
-}
-
 export default function PaginationButtons({
   onClick,
   page,
@@ -37,7 +21,7 @@ export default function PaginationButtons({
   };
 
   return (
-    <div className="pagination-buttons">
+    <div className='flex justify-center gap-1 p-6 bg-white font-semibold text-base text-gray-500'>
       <PageButton onClick={onPreviousPage} isLoading={isLoading}>
         &lt;
       </PageButton>
@@ -59,5 +43,22 @@ export default function PaginationButtons({
         &gt;
       </PageButton>
     </div>
+  );
+}
+
+function PageButton({ children, onClick, isActive, isLoading }) {
+  const handleClick = () => {
+    if (!isLoading) {
+      onClick();
+    }
+  };
+  const activeStyle = isActive ? 'bg-blue text-white' : 'bg-white';
+  return (
+    <button
+      onClick={handleClick}
+      className={`flex justify-center items-center w-10 h-10 rounded-full border border-solid border-gray-200 hover:bg-blue hover:text-white ${activeStyle}`}
+    >
+      {children}
+    </button>
   );
 }

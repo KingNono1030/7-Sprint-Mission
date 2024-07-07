@@ -1,13 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
+import useMediaQuery from '../hooks/useMediaQuery';
+import useAsync from '../hooks/useAsync';
+import { getItems } from '../api';
 import FavoriteProductSection from '../components/FavoriteProductSection';
 import AllProductSection from '../components/AllProductSection';
 import PaginationButtons from '../components/PaginationButtons';
-import { getItems } from '../api';
-import useMediaQuery from '../hooks/useMediaQuery';
-import useAsync from '../hooks/useAsync';
-import '../styles/reset.css';
-import '../styles/App.css';
 
 export default function ItemListPage() {
   const [favoriteItems, setFavoriteItems] = useState([]);
