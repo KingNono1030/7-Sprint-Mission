@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import CommonButton from '../components/CommonButton';
 import FileInput from '../components/FileInput';
-import TagInput from '../components/TagInput.jsx';
-import styled, { css } from 'styled-components';
+import TagInput from '../components/TagInput';
 
 const INITIAL_VALUE = {
   images: [],
@@ -50,124 +49,70 @@ export default function AddItemPage() {
       <Helmet>
         <title>상품 등록</title>
       </Helmet>
-      <Form id="addItemForm">
-        <FormHeader>
-          <FormHeaderText>상품 등록하기</FormHeaderText>
+      <form
+        className='flex flex-col items-center gap-4 max-w-[1200px] p-4 m-auto mb-10'
+        id='addItemForm'
+      >
+        <div className='flex justify-between items-center w-full'>
+          <h2 className='font-bold text-xl'>상품 등록하기</h2>
           <CommonButton
-            type="submit"
-            form="addItemForm"
+            type='submit'
+            form='addItemForm'
             onSubmit={hanleSubmit}
             isActive={isActive}
           >
             등록
           </CommonButton>
-        </FormHeader>
-        <Label>
-          <LabelHeaderText>상품 이미지</LabelHeaderText>
+        </div>
+        <label className='w-full'>
+          <h3 className='font-bold text-sm mb-3'>상품 이미지</h3>
           <FileInput
             onChange={handleChange}
-            name="images"
+            name='images'
             value={values.images}
           />
-        </Label>
-        <Label>
-          <LabelHeaderText>상품명</LabelHeaderText>
-          <Input
-            name="name"
+        </label>
+        <label className='w-full'>
+          <h3 className='font-bold text-sm mb-3'>상품명</h3>
+          <input
+            className='block w-full h-[56px] py-4 px-6 rounded-xl bg-gray-100 placeholder-gray-400'
+            name='name'
             value={values.name}
             onChange={handleInputChange}
-            type="text"
-            placeholder="상품명을 입력해주세요"
+            type='text'
+            placeholder='상품명을 입력해주세요'
             required
           />
-        </Label>
-        <Label>
-          <LabelHeaderText>상품 소개</LabelHeaderText>
-          <Textarea
-            name="description"
+        </label>
+        <label className='w-full'>
+          <h3 className='font-bold text-sm mb-3'>상품 소개</h3>
+          <textarea
+            className='block w-full h-[56px] min-h-[200px] py-4 px-6 rounded-xl bg-gray-100 placeholder-gray-400 resize-none'
+            name='description'
             value={values.description}
             onChange={handleInputChange}
-            type="text"
-            placeholder="상품 소개를 입력해주세요"
+            type='text'
+            placeholder='상품 소개를 입력해주세요'
             required
-          ></Textarea>
-        </Label>
-        <Label>
-          <LabelHeaderText>판매가격</LabelHeaderText>
-          <Input
-            name="price"
+          ></textarea>
+        </label>
+        <label className='w-full'>
+          <h3 className='font-bold text-sm mb-3'>판매가격</h3>
+          <input
+            className='block w-full h-[56px] py-4 px-6 rounded-xl bg-gray-100 placeholder-gray-400'
+            name='price'
             value={values.price}
             onChange={handlePriceChange}
-            type="text"
-            placeholder="판매 가격을 입력해주세요"
+            type='text'
+            placeholder='판매 가격을 입력해주세요'
             required
           />
-        </Label>
-        <Label>
-          <LabelHeaderText>태그</LabelHeaderText>
-          <TagInput name="tags" value={values.tags} onChange={handleChange} />
-        </Label>
-      </Form>
+        </label>
+        <label className='w-full'>
+          <h3 className='font-bold text-sm mb-3'>태그</h3>
+          <TagInput name='tags' value={values.tags} onChange={handleChange} />
+        </label>
+      </form>
     </>
   );
 }
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  max-width: 1200px;
-  padding: 16px;
-  margin: 0 auto 40px;
-`;
-
-const FormHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const FormHeaderText = styled.h2`
-  font-weight: 700;
-  font-size: 20px;
-  font-family: Pretendard;
-`;
-
-const Label = styled.label`
-  width: 100%;
-`;
-
-const LabelHeaderText = styled.h3`
-  font-weight: 700;
-  font-size: 14px;
-  font-family: Pretendard;
-  margin-bottom: 12px;
-`;
-
-const inputContents = css`
-  display: block;
-  width: 100%;
-  height: 56px;
-  padding: 16px 24px;
-  border-radius: 12px;
-  background-color: #f3f4f6;
-  &::placeholder {
-    font-weight: 400;
-    font-size: 16px;
-    color: #9ca3af;
-  }
-`;
-
-const Input = styled.input`
-  ${inputContents}
-`;
-
-const Textarea = styled.textarea`
-  min-height: 200px;
-  resize: none;
-  ${inputContents};
-`;
-
-export { Input };

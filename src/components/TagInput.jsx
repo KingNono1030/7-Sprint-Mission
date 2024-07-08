@@ -1,43 +1,5 @@
 import { useState } from 'react';
-import { Input } from '../pages/AddItemPage';
-import styled from 'styled-components';
-
-const Tags = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-`;
-
-const Tag = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-  padding-left: 16px;
-  margin-top: 12px;
-  border-radius: 26px;
-  background-color: #f9fafb;
-`;
-
-const TagContent = styled.span`
-  font-weight: 400;
-  font-size: 16px;
-  color: #1f2937;
-`;
-
-const DeleteButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #9ca3af;
-  font-weight: 900;
-  font-size: 12px;
-  color: #ffffff;
-`;
+import LabelInput from './LabelInput';
 
 export default function TagInput({ name, value = [], onChange }) {
   const [inputValue, setInputValue] = useState('');
@@ -52,43 +14,38 @@ export default function TagInput({ name, value = [], onChange }) {
     }
   };
 
-  const handleDelete = (e) => {
-    const targetID = e.target.id;
-    const targetIndex = value.indexOf(targetID);
-    onChange(name, [
-      ...value.slice(0, targetIndex),
-      ...value.slice(targetIndex + 1),
-    ]);
+  const handleDelete = (itemToDelete) => {
+    const updatedValue = value.filter((item) => item !== itemToDelete);
+    onChange(name, updatedValue);
   };
 
   return (
     <>
-      <Input
+      <LabelInput
         value={inputValue}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
+        onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        type="text"
-        placeholder="태그를 입력해주세요"
-        required
+        placeholder='태그를 입력해주세요'
       />
-      {value[0] && (
-        <Tags>
-          {value.map((item) => {
-            return (
-              <Tag key={item}>
-                <TagContent>{item}</TagContent>
-                <DeleteButton onClick={handleDelete} id={item} type="button">
-                  X
-                </DeleteButton>
-              </Tag>
-            );
-          })}
-        </Tags>
+      {value.length > 0 && (
+        <ul className='flex flex-wrap gap-3 mt-3'>
+          {value.map((item) => (
+            <li
+              className='flex justify-between items-center gap-2 p-3 pl-4 rounded-[26px] bg-gray-50'
+              key={item}
+            >
+              <span className='font-normal text-4 text-gray-800'>{item}</span>
+              <button
+                className='flex justify-center items-center w-5 h-5 rounded-full bg-gray-400 font-black text-xs text-white'
+                onClick={() => handleDelete(item)}
+                type='button'
+              >
+                X
+              </button>
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );
 }
-
-export { DeleteButton };

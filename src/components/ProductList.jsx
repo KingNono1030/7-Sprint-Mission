@@ -17,7 +17,7 @@ export default function ProductList({ className, items }) {
 
 function ProductListItem({ item }) {
   const { images, price, favoriteCount, name } = item;
-  const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
+  const formattedPrice = price.toLocaleString('ko-KR');
 
   return (
     <>
