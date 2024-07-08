@@ -9,7 +9,7 @@ export default function Nav() {
   const [deviceType] = useMediaQuery();
   const isCommunity = location.pathname === '/community';
   const isItems =
-    location.pathname === '/items' || location.pathname === '/addItem';
+    location.pathname === '/items' || location.pathname === '/additem';
   /* no nav in auth pages */
   const isLogin = location.pathname === '/login';
   const isSignup = location.pathname === '/signup';

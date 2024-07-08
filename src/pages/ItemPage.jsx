@@ -68,13 +68,13 @@ export default function ItemPage() {
   }, [productId, loadcomments]);
 
   return (
-    <div className="max-w-[1200px] mx-auto xl:px-0 p-4 pb-40">
+    <div className='max-w-[1200px] mx-auto xl:px-0 p-4 pb-40'>
       <ProductDescription product={product} />
       {itemLoadingError && <span>{itemLoadingError.message}</span>}
       <ProductReviews comments={comments} />
       {commentsLoadingError && <span>{commentsLoadingError.message}</span>}
-      <Link to="/items" className="flex justify-center">
-        <RoundButton className="w-[240px]">목록으로 돌아가기</RoundButton>
+      <Link to='/items' className='flex justify-center'>
+        <RoundButton className='w-[240px]'>목록으로 돌아가기</RoundButton>
       </Link>
     </div>
   );

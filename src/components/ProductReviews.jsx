@@ -8,25 +8,30 @@ const PLACEHOLDER =
 
 export default function ProductReviews({ comments }) {
   const isInquiryEmpty = comments.length === 0;
+
+  const getInquiry = () => {
+    return isInquiryEmpty ? (
+      <EmptyInquiry />
+    ) : (
+      <ul className='mb-6'>
+        {comments.map((item) => {
+          return (
+            <li
+              key={item.id}
+              className='relative mt-6 border-b border-solid border-gray-200'
+            >
+              <Comment comment={item} />
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
+
   return (
-    <div className="pt-4 border-t border-solid border-gray-200">
+    <div className='pt-4 border-t border-solid border-gray-200'>
       <ReviewsInput />
-      {isInquiryEmpty ? (
-        <EmptyInquiry />
-      ) : (
-        <ul className="mb-6">
-          {comments.map((item) => {
-            return (
-              <li
-                key={item.id}
-                className="relative mt-6 border-b border-solid border-gray-200"
-              >
-                <Comment comment={item} />
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      {getInquiry()}
     </div>
   );
 }
@@ -46,18 +51,18 @@ function ReviewsInput() {
   return (
     <form onSubmit={hanleSubmit}>
       <label>
-        <h3 className="mb-4 text-base font-semibold text-gray-900">문의하기</h3>
+        <h3 className='mb-4 text-base font-semibold text-gray-900'>문의하기</h3>
         <textarea
           onChange={handleInputChange}
           value={value}
-          name="productReviews"
+          name='productReviews'
           placeholder={PLACEHOLDER}
-          className="w-full h-[104px] px-6 py-4 mb-4 rounded-xl bg-gray-100 text-sm font-normal placeholder-gray-400 resize-none"
+          className='w-full h-[104px] px-6 py-4 mb-4 rounded-xl bg-gray-100 text-sm font-normal placeholder-gray-400 resize-none'
           required
         />
       </label>
       <CommonButton
-        className="w-[70px] h-[42px] ml-auto mr-0"
+        className='w-[70px] h-[42px] ml-auto mr-0'
         isActive={isActive}
       >
         등록
@@ -68,9 +73,9 @@ function ReviewsInput() {
 
 function EmptyInquiry() {
   return (
-    <div className="text-center mb-6">
-      <img className="mx-auto" src={emptyInquiryImg} alt="문의가 없습니다" />
-      <h3 className="font-normal text-base text-gray-400">
+    <div className='text-center mb-6'>
+      <img className='mx-auto' src={emptyInquiryImg} alt='문의가 없습니다' />
+      <h3 className='font-normal text-base text-gray-400'>
         아직 문의가 없습니다.
       </h3>
     </div>
@@ -86,24 +91,24 @@ function Comment({ comment }) {
   const now = new Date();
   const createdAtDate = new Date(createdAt);
   const timeDifference = now - createdAtDate;
-  const hourGap = convertToHour(timeDifference);
+  const hourGap = convertToHour(timeDifference).toLocaleString();
 
   return (
     <>
-      <h3 className="font-normal text-base text-gray-800">{content}</h3>
-      <div className="flex gap-2 my-6">
-        <img className="w-10" src={image} alt="작성자 프로필" />
-        <div className="flex flex-col gap-1">
-          <span className="font-normal text-sm text-gray-600">{nickname}</span>
-          <span className="font-normal text-xs text-gray-400">
+      <h3 className='font-normal text-base text-gray-800'>{content}</h3>
+      <div className='flex gap-2 my-6'>
+        <img className='w-10' src={image} alt='작성자 프로필' />
+        <div className='flex flex-col gap-1'>
+          <span className='font-normal text-sm text-gray-600'>{nickname}</span>
+          <span className='font-normal text-xs text-gray-400'>
             {hourGap}시간 전
           </span>
         </div>
       </div>
       <img
-        className="absolute top-0 right-0"
+        className='absolute top-0 right-0 cursor-pointer'
         src={kebabIcon}
-        alt="케밥 이이콘"
+        alt='케밥 이이콘'
       />
     </>
   );
