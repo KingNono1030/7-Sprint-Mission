@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import CommonButton from '../components/CommonButton';
+import Button from '../components/Button';
 import FileInput from '../components/FileInput';
 import TagInput from '../components/TagInput';
 
@@ -55,14 +55,14 @@ export default function AddItemPage() {
       >
         <div className='flex justify-between items-center w-full'>
           <h2 className='font-bold text-xl'>상품 등록하기</h2>
-          <CommonButton
+          <Button
             type='submit'
             form='addItemForm'
             onSubmit={hanleSubmit}
             isActive={isActive}
           >
             등록
-          </CommonButton>
+          </Button>
         </div>
         <label className='w-full'>
           <h3 className='font-bold text-sm mb-3'>상품 이미지</h3>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RoundButton from '../components/RoundButton';
+import Button from './Button';
 import LabelInput from '../components/LabelInput';
 import PasswordInput from '../components/PasswordInput';
 import InputErrorMessage from '../components/InputErrorMessage';
@@ -58,13 +58,14 @@ const AuthForm = ({
             </div>
           );
         })}
-        <RoundButton
+        <Button
           type='submit'
           disabled={!isComplete}
+          size='large'
           className='w-full my-6'
         >
           {title}
-        </RoundButton>
+        </Button>
       </form>
     </>
   );

@@ -1,0 +1,50 @@
+import { ReactNode, MouseEventHandler } from 'react';
+
+type Size = 'large' | 'medium' | 'small';
+type Color = 'primary' | 'secondary';
+
+interface ButtonProps {
+  children: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  type?: 'button' | 'submit';
+  isActive?: boolean;
+  size?: Size;
+  color?: Color;
+}
+
+export default function Button({
+  children = '',
+  onClick,
+  className = '',
+  type = 'button',
+  isActive = true,
+  size = 'small',
+  color = 'primary',
+}: ButtonProps) {
+  const buttonSizeStyle = styleBySize[size];
+  const buttonColorStyle = styleByColor[color];
+  return (
+    <button
+      className={`${buttonBaseStyle} ${buttonSizeStyle} ${buttonColorStyle} ${className}`}
+      type={type}
+      onClick={onClick}
+      disabled={!isActive}
+    >
+      {children}
+    </button>
+  );
+}
+
+const buttonBaseStyle = `flex justify-center items-center gap-2  disabled:bg-gray-400  font-semibold`;
+
+const styleBySize = {
+  large: 'px-[128px] h-[56px] text-xl rounded-full',
+  medium: 'w-[240px] h-[48px] text-lg rounded-full',
+  small: 'px-6 h-[42px] text-base rounded-lg',
+};
+
+const styleByColor = {
+  primary: 'bg-blue hover:bg-blue-600 text-white-text',
+  secondary: 'bg-white text-blue border border-solid border-blue',
+};

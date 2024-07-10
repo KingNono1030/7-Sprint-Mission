@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet';
 import useMediaQuery from '../hooks/useMediaQuery';
 import useAsync from '../hooks/useAsync';
-import { getItems } from '../api';
+import { getItems } from '../utils/api';
 import FavoriteProductSection from '../components/FavoriteProductSection';
 import AllProductSection from '../components/AllProductSection';
 import PaginationButtons from '../components/PaginationButtons';

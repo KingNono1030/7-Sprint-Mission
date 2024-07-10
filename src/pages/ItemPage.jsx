@@ -1,10 +1,10 @@
 import { Link, useParams } from 'react-router-dom';
-import { getItemByID, getCommentsByID } from '../api';
+import { getItemByID, getCommentsByID } from '../utils/api';
 import { useEffect, useState, useCallback } from 'react';
 import useAsync from '../hooks/useAsync';
 import ProductDescription from '../components/ProductDescription.jsx';
 import ProductReviews from '../components/ProductReviews.jsx';
-import RoundButton from '../components/RoundButton';
+import Button from '../components/Button';
 
 const INITIAL_PRODUCT = {
   name: '',
@@ -74,7 +74,7 @@ export default function ItemPage() {
       <ProductReviews comments={comments} />
       {commentsLoadingError && <span>{commentsLoadingError.message}</span>}
       <Link to='/items' className='flex justify-center'>
-        <RoundButton className='w-[240px]'>목록으로 돌아가기</RoundButton>
+        <Button size='medium'>목록으로 돌아가기</Button>
       </Link>
     </div>
   );

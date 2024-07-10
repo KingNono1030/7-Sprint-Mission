@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import CommonButton from './CommonButton';
+import CommonButton from './Button';
 import useMediaQuery from '../hooks/useMediaQuery';
 import logoImgMobile from '../image-resource/panda-logo-mobile.svg';
 import logoImg from '../image-resource/panda-logo.svg';

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import CommonButton from './CommonButton';
+import Button from './Button';
 import ProductSectionHeader from './ProductSectionHeader';
 import ProductList from './ProductList';
 import Dropdown from './Dropdown';
@@ -39,9 +39,7 @@ export default function AllProductSection({
     <section className='max-w-[1200px] my-0 mx-auto p-4'>
       <ProductSectionHeader text={HEADER_TEXT}>
         <Link to='/additem' className='block h-[42px]'>
-          <CommonButton className='w-auto h-full px-6 order-2 md:text-base'>
-            상품 등록하기
-          </CommonButton>
+          <Button className=''>상품 등록하기</Button>
         </Link>
         <div className='relative h-[42px]'>
           <input

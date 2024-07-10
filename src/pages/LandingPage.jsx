@@ -1,7 +1,11 @@
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+
 import LandingBanner from '../components/LandingBanner';
 import LandingFeatureList from '../components/LandingFeatureList';
 import LandingFooter from '../components/LandingFooter';
+import Button from '../components/Button';
+
 import topBannerImg from '../image-resource/Img-home-top.svg';
 import bottomBannerImg from '../image-resource/Img-home-bottom.svg';
 
@@ -21,7 +25,13 @@ function LandingPage() {
         headerF={TOP_HEADER_F}
         headerS={TOP_HEADER_S}
         isTop={true}
-      />
+      >
+        <Link to='/items'>
+          <Button size='large' className=''>
+            구경하러 가기
+          </Button>
+        </Link>
+      </LandingBanner>
       <LandingFeatureList />
       <LandingBanner
         src={bottomBannerImg}

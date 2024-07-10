@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CommonButton from './CommonButton';
+import Button from './Button';
 import emptyInquiryImg from '../image-resource/Img-inquiry-empty.svg';
 import kebabIcon from '../image-resource/ic-kebab.svg';
 
@@ -61,12 +61,9 @@ function ReviewsInput() {
           required
         />
       </label>
-      <CommonButton
-        className='w-[70px] h-[42px] ml-auto mr-0'
-        isActive={isActive}
-      >
+      <Button className='ml-auto' isActive={isActive}>
         등록
-      </CommonButton>
+      </Button>
     </form>
   );
 }
