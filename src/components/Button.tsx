@@ -1,4 +1,5 @@
 import { ReactNode, MouseEventHandler } from 'react';
+import clsx from 'clsx';
 
 type Size = 'large' | 'medium' | 'small';
 type Color = 'primary' | 'secondary';
@@ -24,9 +25,15 @@ export default function Button({
 }: ButtonProps) {
   const buttonSizeStyle = styleBySize[size];
   const buttonColorStyle = styleByColor[color];
+  const buttonStyle = clsx(
+    buttonBaseStyle,
+    buttonSizeStyle,
+    buttonColorStyle,
+    className
+  );
   return (
     <button
-      className={`${buttonBaseStyle} ${buttonSizeStyle} ${buttonColorStyle} ${className}`}
+      className={buttonStyle}
       type={type}
       onClick={onClick}
       disabled={!isActive}

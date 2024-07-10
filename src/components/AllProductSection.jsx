@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import ProductSectionHeader from './ProductSectionHeader';
@@ -7,34 +6,12 @@ import Dropdown from './Dropdown';
 
 const HEADER_TEXT = '판매 중인 상품';
 
-const initialDropdownItems = [
-  {
-    id: 'recent',
-    label: '최신순',
-  },
-  {
-    id: 'favorite',
-    label: '좋아요순',
-  },
-];
-
 export default function AllProductSection({
   handleOrderClick,
   items,
   isLoading,
   order,
 }) {
-  const dropdownItems = useMemo(() => {
-    return initialDropdownItems.map((item) => ({
-      ...item,
-      onClick() {
-        handleOrderClick(item.id);
-      },
-    }));
-  }, [handleOrderClick]);
-
-  const dropdownLabel = order === 'recent' ? '최신순' : '좋아요순';
-
   return (
     <section className='max-w-[1200px] my-0 mx-auto p-4'>
       <ProductSectionHeader text={HEADER_TEXT}>
@@ -60,11 +37,13 @@ export default function AllProductSection({
             />
           </svg>
         </div>
-        <Dropdown
-          label={dropdownLabel}
-          items={dropdownItems}
-          className='h-[42px]'
-        />
+        <Dropdown>
+          <Dropdown.Toggle>최신순</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item position='first'>최신순</Dropdown.Item>
+            <Dropdown.Item position='last'>좋아요순</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </ProductSectionHeader>
       <ProductList
         className='grid gap-2 md:gap-4 xl:gap-6 grid-cols-2 md:grid-cols-3 xl:grid-cols-5'
