@@ -4,19 +4,7 @@ import twitterImg from '@assets/ic-twitter.svg';
 import instagramImg from '@assets/ic-instagram.svg';
 import youtubeImg from '@assets/ic-youtube.svg';
 
-interface LandingFooterProps {
-  src: string;
-  headerF: string;
-  headerS: string;
-  isTop?: boolean;
-}
-
-export default function LandingFooter({
-  src = '',
-  headerF = '',
-  headerS = '',
-  isTop = false,
-}: LandingFooterProps) {
+export default function LandingFooter() {
   return (
     <footer className={containerStyle}>
       <Copyright />

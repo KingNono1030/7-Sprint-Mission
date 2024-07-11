@@ -1,13 +1,13 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
-import LandingBanner from '../components/LandingBanner';
-import LandingFeatureList from '../components/LandingFeatureList';
-import LandingFooter from '../components/LandingFooter';
-import Button from '../components/Button';
+import LandingBanner from '@components/LandingBanner';
+import LandingFeatureList from '@components/LandingFeatureList';
+import LandingFooter from '@components/LandingFooter';
+import Button from '@components/Button';
 
-import topBannerImg from '../assets/home-banner-top.svg';
-import bottomBannerImg from '../assets/home-banner-bottom.svg';
+import topBannerImg from '@assets/home-banner-top.svg';
+import bottomBannerImg from '@assets/home-banner-bottom.svg';
 
 export default function LandingPage() {
   return (
@@ -19,7 +19,6 @@ export default function LandingPage() {
         src={topBannerImg}
         headerF={TOP_HEADER_F}
         headerS={TOP_HEADER_S}
-        isTop={true}
       >
         <Link to='/items'>
           <Button size='large' className=''>

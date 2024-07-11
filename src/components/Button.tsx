@@ -6,7 +6,7 @@ type Color = 'primary' | 'secondary';
 
 interface ButtonProps {
   children: ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   type?: 'button' | 'submit';
   isActive?: boolean;
