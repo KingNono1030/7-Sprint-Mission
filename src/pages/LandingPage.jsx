@@ -9,12 +9,7 @@ import Button from '../components/Button';
 import topBannerImg from '../image-resource/Img-home-top.svg';
 import bottomBannerImg from '../image-resource/Img-home-bottom.svg';
 
-const TOP_HEADER_F = '일상의 모든 물건을';
-const TOP_HEADER_S = '거래해보세요';
-const BOTTOM_HEADER_F = '믿을 수 있는';
-const BOTTOM_HEADER_S = '판다마켓 중고 거래';
-
-function LandingPage() {
+export default function LandingPage() {
   return (
     <>
       <Helmet>
@@ -43,4 +38,7 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+const TOP_HEADER_F = '일상의 모든 물건을';
+const TOP_HEADER_S = '거래해보세요';
+const BOTTOM_HEADER_F = '믿을 수 있는';
+const BOTTOM_HEADER_S = '판다마켓 중고 거래';

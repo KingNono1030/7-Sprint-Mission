@@ -11,7 +11,7 @@ export default function LandingFooter({
   isTop = false,
 }) {
   return (
-    <footer className="grid grid-cols-2 md:grid-cols-3 gap-16 h-40 p-8 md:px-[100px] xl:px-[200px] bg-gray-900">
+    <footer className='grid grid-cols-2 md:grid-cols-3 gap-16 h-40 p-8 md:px-[100px] xl:px-[200px] bg-gray-900'>
       <Copyright />
       <Info />
       <ContactList />
@@ -21,7 +21,7 @@ export default function LandingFooter({
 
 function Copyright() {
   return (
-    <span className="order-1 font-normal text-base text-gray-300">
+    <span className='order-1 font-normal text-base text-gray-300'>
       ©codeit - 2024
     </span>
   );
@@ -29,12 +29,12 @@ function Copyright() {
 
 function Info() {
   return (
-    <ul className="md:order-2 flex md:justify-center gap-7 font-normal text-base">
-      <Link to="/privacy">
-        <li className="text-gray-100">Privacy Policy</li>
+    <ul className='md:order-2 flex md:justify-center gap-7 font-normal text-base'>
+      <Link to='/privacy'>
+        <li className='text-gray-100'>Privacy Policy</li>
       </Link>
-      <Link to="/faq">
-        <li className="text-gray-100">FAQ</li>
+      <Link to='/faq'>
+        <li className='text-gray-100'>FAQ</li>
       </Link>
     </ul>
   );
@@ -42,25 +42,25 @@ function Info() {
 
 function ContactList() {
   return (
-    <ul className="md:order-3 flex justify-end gap-3 ">
+    <ul className='md:order-3 flex justify-end gap-3 '>
       <li>
-        <Link to="https://www.facebook.com/">
-          <img src={facebookImg} alt="페이스북 링크" />
+        <Link to='https://www.facebook.com/'>
+          <img src={facebookImg} alt='페이스북 링크' />
         </Link>
       </li>
       <li>
-        <Link to="https://x.com/">
-          <img src={twitterImg} alt="트위터 링크" />
+        <Link to='https://x.com/'>
+          <img src={twitterImg} alt='트위터 링크' />
         </Link>
       </li>
       <li>
-        <Link to="https://www.youtube.com/">
-          <img src={youtubeImg} alt="유튜브 링크" />
+        <Link to='https://www.youtube.com/'>
+          <img src={youtubeImg} alt='유튜브 링크' />
         </Link>
       </li>
       <li>
-        <Link to="https://www.instagram.com/">
-          <img src={instagramImg} alt="인스타그램 링크" />
+        <Link to='https://www.instagram.com/'>
+          <img src={instagramImg} alt='인스타그램 링크' />
         </Link>
       </li>
     </ul>
