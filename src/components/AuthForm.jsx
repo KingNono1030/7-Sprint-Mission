@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Button from './Button';
-import LabelInput from '../components/LabelInput';
-import PasswordInput from '../components/PasswordInput';
-import InputErrorMessage from '../components/InputErrorMessage';
-import { useValidation } from '../hooks/useValidation';
+import Button from '@components/Button';
+import LabelInput from '@components/LabelInput';
+import PasswordInput from '@components/PasswordInput';
+import InputErrorMessage from '@components/InputErrorMessage';
+import { useValidation } from '@hooks/useValidation';
 
 const AuthForm = ({
   initialValues,
@@ -14,7 +14,7 @@ const AuthForm = ({
 }) => {
   const [values, setValues] = useState(initialValues);
   const [isInitialized, setIsInitialized] = useState(false);
-  const { errors, isComplete } = useValidation(values, validationRules);
+  const { errors, isComplete } = useValidation({ values, validationRules });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

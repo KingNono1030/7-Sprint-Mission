@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import AuthContainer from '../components/AuthContainer';
 import AuthForm from '../components/AuthForm';
 import { emailValidation, passwordValidation } from '../utils/validationRules';
