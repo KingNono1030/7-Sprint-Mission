@@ -37,16 +37,27 @@ export default function LandingFeatureList() {
   );
 }
 
+interface LandingFeatureProps {
+  src: string;
+  alt: string;
+  keyword: 'Hot Item' | 'Search' | 'Register';
+  headerF: string;
+  headerS: string;
+  descF: string;
+  descS: string;
+  isReverse?: boolean;
+}
+
 function LandingFeature({
   src,
   alt = '',
-  keyword = '',
+  keyword,
   headerF = '',
   headerS = '',
   descF = '',
   descS = '',
   isReverse = false,
-}) {
+}: LandingFeatureProps) {
   let rowReverse = '';
   let textAlign = '';
   if (isReverse) {
