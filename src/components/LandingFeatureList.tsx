@@ -1,10 +1,11 @@
+import clsx from 'clsx';
 import hotItemFeatureImg from '@assets/home-feature-01.svg';
 import searchFeatureImg from '@assets/home-feature-02.svg';
 import registerItemFeatureImg from '@assets/home-feature-03.svg';
 
 export default function LandingFeatureList() {
   return (
-    <main className='px-4 md:px-6 pt-12 md:pt-6 xl:pt-[120px]'>
+    <main className={containerStyle}>
       <LandingFeature
         src={hotItemFeatureImg}
         alt={HOT_ALT}
@@ -37,6 +38,8 @@ export default function LandingFeatureList() {
   );
 }
 
+const containerStyle = 'px-4 md:px-6 pt-12 md:pt-6 xl:pt-[120px]';
+
 interface LandingFeatureProps {
   src: string;
   alt: string;
@@ -58,26 +61,21 @@ function LandingFeature({
   descS = '',
   isReverse = false,
 }: LandingFeatureProps) {
-  let rowReverse = '';
-  let textAlign = '';
-  if (isReverse) {
-    rowReverse = 'xl:flex-row-reverse';
-    textAlign = 'text-right';
-  }
+  const sectionFlexStyle = isReverse ? 'xl:flex-row-reverse' : '';
+  const textAlignStyle = isReverse ? 'xl:mr-16 text-right' : 'xl:ml-16';
+  const sectionStyle = clsx(sectionBaseStyle, sectionFlexStyle);
+  const headerContainerStyle = clsx(textAlignStyle, 'mt-5');
+
   return (
-    <section
-      className={`xl:flex xl:items-center max-w-[1200px] mx-auto mb-16 xl:mb-[280px] ${rowReverse}`}
-    >
-      <img className='w-full xl:max-w-[588px]' src={src} alt={alt} />
-      <div
-        className={`mt-5 ${isReverse ? 'xl:mr-16' : 'xl:ml-16'} ${textAlign}`}
-      >
-        <h3 className='mb-2 font-bold text-base text-blue'>{keyword}</h3>
-        <h2 className='mb-5 font-bold text-2xl md:text-3xl xl:text-4xl text-gray'>
-          {headerF} <br className='hidden xl:inline' />
+    <section className={sectionStyle}>
+      <img className={imageBaseStyle} src={src} alt={alt} />
+      <div className={headerContainerStyle}>
+        <h3 className={keywordStyle}>{keyword}</h3>
+        <h2 className={headerStyle}>
+          {headerF} <br className={emptySpaceStyle} />
           {headerS}
         </h2>
-        <p className='font-medium text-base md:text-xl xl:text-2xl text-gray'>
+        <p className={descriptionStyle}>
           {descF} <br />
           {descS}
         </p>
@@ -85,6 +83,15 @@ function LandingFeature({
     </section>
   );
 }
+
+const sectionBaseStyle =
+  'xl:flex xl:items-center max-w-[1200px] mx-auto mb-16 xl:mb-[280px]';
+const imageBaseStyle = 'w-full xl:max-w-[588px]';
+const keywordStyle = 'mb-2 font-bold text-base text-blue';
+const headerStyle = 'mb-5 font-bold text-2xl md:text-3xl xl:text-4xl text-gray';
+const emptySpaceStyle = 'hidden xl:inline';
+const descriptionStyle =
+  'font-medium text-base md:text-xl xl:text-2xl text-gray';
 
 const HOT_ALT = '판다의 핫아이템';
 const SEARCH_ALT = '구매할 상품을 고르는 이미지';
