@@ -6,8 +6,8 @@ import LandingFeatureList from '../components/LandingFeatureList';
 import LandingFooter from '../components/LandingFooter';
 import Button from '../components/Button';
 
-import topBannerImg from '../image-resource/Img-home-top.svg';
-import bottomBannerImg from '../image-resource/Img-home-bottom.svg';
+import topBannerImg from '../assets/home-banner-top.svg';
+import bottomBannerImg from '../assets/home-banner-bottom.svg';
 
 export default function LandingPage() {
   return (

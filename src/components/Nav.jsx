@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import CommonButton from './Button';
 import useMediaQuery from '../hooks/useMediaQuery';
-import logoImgMobile from '../image-resource/panda-logo-mobile.svg';
-import logoImg from '../image-resource/panda-logo.svg';
+import logoImgMobile from '../assets/panda-logo-mobile.svg';
+import logoImg from '../assets/panda-logo.svg';
 
 export default function Nav() {
   const location = useLocation();

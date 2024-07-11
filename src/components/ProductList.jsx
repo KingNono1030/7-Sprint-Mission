@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import heartImg from '../image-resource/panda-product-favorite-count.svg';
+import heartImg from '../assets/panda-product-favorite-count.svg';
 
 export default function ProductList({ className, items }) {
   return (

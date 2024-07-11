@@ -1,9 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import useMediaQuery from '../hooks/useMediaQuery';
-import logoImgMobile from '../image-resource/panda-auth-logo--mobile.svg';
-import logoImg from '../image-resource/panda-auth-logo.svg';
-import googleLoginImg from '../image-resource/sns-login--google.svg';
-import kakaoLoginImg from '../image-resource/sns-login--kakao.svg';
+import logoImgMobile from '../assets/panda-auth-logo--mobile.svg';
+import logoImg from '../assets/panda-auth-logo.svg';
+import googleLoginImg from '../assets/sns-login--google.svg';
+import kakaoLoginImg from '../assets/sns-login--kakao.svg';
 
 const LOGINPAGE_HEADER = '판다마켓이 처음이신가요?';
 const SIGNUPPAGE_HEADER = '이미 회원이신가요?';

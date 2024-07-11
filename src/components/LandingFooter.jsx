@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import facebookImg from '../image-resource/ic-facebook.svg';
-import twitterImg from '../image-resource/ic-twitter.svg';
-import instagramImg from '../image-resource/ic-instagram.svg';
-import youtubeImg from '../image-resource/ic-youtube.svg';
+import facebookImg from '../assets/ic-facebook.svg';
+import twitterImg from '../assets/ic-twitter.svg';
+import instagramImg from '../assets/ic-instagram.svg';
+import youtubeImg from '../assets/ic-youtube.svg';
 
 export default function LandingFooter({
   src = '',

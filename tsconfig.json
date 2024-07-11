@@ -16,7 +16,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"],
+      "@utils/*": ["utils/*"],
+      "@styles/*": ["styles/*"],
+      "@font/*": ["font/*"]
+    },
     "moduleDetection": "force"
   },
-  "include": ["src"]
+  "include": ["src", "custom.d.ts"]
 }

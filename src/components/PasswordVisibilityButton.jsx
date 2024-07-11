@@ -1,5 +1,5 @@
-import visibilityOnImg from '../image-resource/btn-visibility-on.svg';
-import visibilityOffImg from '../image-resource/btn-visibility-off.svg';
+import visibilityOnImg from '../assets/btn-visibility-on.svg';
+import visibilityOffImg from '../assets/btn-visibility-off.svg';
 
 const visibility = {
   on: visibilityOnImg,
