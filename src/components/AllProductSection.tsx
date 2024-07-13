@@ -1,22 +1,25 @@
 import { Link } from 'react-router-dom';
-import Button from './Button';
-import ProductSectionHeader from './ProductSectionHeader';
-import ProductList from './ProductList';
-import Dropdown from './Dropdown';
+import Button from '@components/Button';
+import ProductSectionHeader from '@components/ProductSectionHeader';
+import ProductList, { Item } from '@components/ProductList';
+import Dropdown from '@components/Dropdown';
 
-const HEADER_TEXT = '판매 중인 상품';
+interface AllProductSectionProps {
+  handleOrderClick: (order: string) => void;
+  items: Item[];
+  order: string;
+}
 
 export default function AllProductSection({
   handleOrderClick,
   items,
-  isLoading,
   order,
-}) {
+}: AllProductSectionProps) {
   return (
     <section className='max-w-[1200px] my-0 mx-auto p-4'>
       <ProductSectionHeader text={HEADER_TEXT}>
         <Link to='/additem' className='block h-[42px]'>
-          <Button className=''>상품 등록하기</Button>
+          <Button>상품 등록하기</Button>
         </Link>
         <div className='relative h-[42px]'>
           <input
@@ -28,7 +31,7 @@ export default function AllProductSection({
             width='24'
             height='24'
             viewBox='0 0 24 24'
-            fill='none'
+            fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
@@ -40,8 +43,22 @@ export default function AllProductSection({
         <Dropdown>
           <Dropdown.Toggle>최신순</Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item position='first'>최신순</Dropdown.Item>
-            <Dropdown.Item position='last'>좋아요순</Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrderClick('recent');
+              }}
+              position='first'
+            >
+              최신순
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleOrderClick('favorite');
+              }}
+              position='last'
+            >
+              좋아요순
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </ProductSectionHeader>
@@ -52,3 +69,5 @@ export default function AllProductSection({
     </section>
   );
 }
+
+const HEADER_TEXT = '판매 중인 상품';

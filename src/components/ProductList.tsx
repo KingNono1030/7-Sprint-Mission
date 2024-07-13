@@ -1,7 +1,20 @@
 import { Link } from 'react-router-dom';
-import heartImg from '../assets/panda-product-favorite-count.svg';
+import heartImg from '@assets/panda-product-favorite-count.svg';
 
-export default function ProductList({ className, items }) {
+export interface Item {
+  id: string;
+  images: string;
+  price: number;
+  favoriteCount: number;
+  name: string;
+}
+
+interface ProductListProps {
+  className: string;
+  items: Item[];
+}
+
+export default function ProductList({ className, items }: ProductListProps) {
   return (
     <ul className={className}>
       {items.map((item) => (
@@ -15,14 +28,18 @@ export default function ProductList({ className, items }) {
   );
 }
 
-function ProductListItem({ item }) {
+interface ProductListItemProps {
+  item: Item;
+}
+
+function ProductListItem({ item }: ProductListItemProps) {
   const { images, price, favoriteCount, name } = item;
   const formattedPrice = price.toLocaleString('ko-KR');
 
   return (
     <>
       <img
-        className='w-full h-full my-4 rounded-2xl shadow-custom-light'
+        className='w-full min-h-[200px] h-full my-4 rounded-2xl shadow-custom-light'
         src={images}
         alt={name}
       />

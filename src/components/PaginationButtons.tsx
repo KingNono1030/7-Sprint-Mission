@@ -1,15 +1,20 @@
+interface PaginationButtonsProps {
+  onClick: (nextPage: number) => void;
+  page: number;
+  isLoading: boolean;
+}
+
 export default function PaginationButtons({
   onClick,
   page,
-  setPage,
   isLoading,
-}) {
+}: PaginationButtonsProps) {
   const onPreviousPage = () => {
     const isPageOutOfBounds = page <= 1;
     isPageOutOfBounds || onClick(page - 1);
   };
 
-  const onPagination = (nextPage) => {
+  const onPagination = (nextPage: number) => {
     onClick(nextPage);
   };
 
@@ -44,7 +49,19 @@ export default function PaginationButtons({
   );
 }
 
-function PageButton({ children, onClick, isActive, isLoading }) {
+interface PageButtonProps {
+  children: string | number;
+  onClick: (() => void) & ((nextPage: number) => void);
+  isActive?: boolean;
+  isLoading: boolean;
+}
+
+function PageButton({
+  children,
+  onClick,
+  isActive,
+  isLoading,
+}: PageButtonProps) {
   const handleClick = () => {
     if (!isLoading) {
       onClick();
