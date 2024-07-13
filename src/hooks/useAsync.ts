@@ -1,11 +1,15 @@
 import { useCallback, useState } from 'react';
 
-export default function useAsync(asyncFunction) {
+type AsyncFunction = (...args: any[]) => Promise<any>;
+
+export default function useAsync(
+  asyncFunction: AsyncFunction
+): [boolean, any, (...args: any[]) => Promise<any>] {
   const [pending, setPending] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   const wrappedFunction = useCallback(
-    async (...args) => {
+    async (...args: any[]) => {
       try {
         setError(null);
         setPending(true);

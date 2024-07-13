@@ -1,16 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
-import useMediaQuery from '../hooks/useMediaQuery';
-import useAsync from '../hooks/useAsync';
-import { getItems } from '../utils/api';
-import FavoriteProductSection from '../components/FavoriteProductSection';
-import AllProductSection from '../components/AllProductSection';
-import PaginationButtons from '../components/PaginationButtons';
+import useMediaQuery from '@hooks/useMediaQuery';
+import useAsync from '@hooks/useAsync';
+import { getItems } from '@utils/api';
+import FavoriteProductSection from '@components/FavoriteProductSection';
+import AllProductSection from '@components/AllProductSection';
+import PaginationButtons from '@components/PaginationButtons';
+import { Item } from '@components/ProductList';
+
+interface Options {
+  pageSize: number;
+  order?: 'recent' | 'favorite';
+  page?: number;
+}
 
 export default function ItemListPage() {
-  const [favoriteItems, setFavoriteItems] = useState([]);
-  const [allItems, setAllItems] = useState([]);
-  const [order, setOrder] = useState('recent');
+  const [favoriteItems, setFavoriteItems] = useState<Item[]>([]);
+  const [allItems, setAllItems] = useState<Item[]>([]);
+  const [order, setOrder] = useState<'recent' | 'favorite'>('recent');
   const [page, setPage] = useState(1);
   const [deviceType, isInitialized] = useMediaQuery();
   const [isLoading, loadingError, getItemsAsync] = useAsync(getItems);
@@ -18,7 +25,7 @@ export default function ItemListPage() {
   // const [search, setSearch] = useState('');
 
   const getValidItems = useCallback(
-    async (options) => {
+    async (options: Options) => {
       const result = await getItemsAsync(options);
       if (!result) return;
       const { list } = result;
@@ -28,7 +35,7 @@ export default function ItemListPage() {
   );
 
   const loadFavoriteItems = useCallback(
-    async (options) => {
+    async (options: Options) => {
       const nextItems = await getValidItems(options);
       setFavoriteItems((prevItems) => nextItems);
     },
@@ -36,18 +43,18 @@ export default function ItemListPage() {
   );
 
   const loadAllItems = useCallback(
-    async (options) => {
+    async (options: Options) => {
       const nextItems = await getValidItems(options);
       setAllItems((prevItems) => nextItems);
     },
     [getValidItems]
   );
 
-  const handleOrderClick = (nextOrder) => {
+  const handleOrderClick = (nextOrder: 'recent' | 'favorite') => {
     setOrder(nextOrder);
   };
 
-  const handlePaginationClick = (nextPage) => {
+  const handlePaginationClick = (nextPage: number) => {
     setPage(nextPage);
   };
 
@@ -80,7 +87,6 @@ export default function ItemListPage() {
       <AllProductSection
         items={allItems}
         handleOrderClick={handleOrderClick}
-        isLoading={isLoading}
         order={order}
       />
       {loadingError?.message && <p>{loadingError.message}</p>}
@@ -88,7 +94,6 @@ export default function ItemListPage() {
         onClick={handlePaginationClick}
         isLoading={isLoading}
         page={page}
-        setPage={setPage}
       />
     </>
   );

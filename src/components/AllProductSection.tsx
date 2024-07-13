@@ -5,7 +5,7 @@ import ProductList, { Item } from '@components/ProductList';
 import Dropdown from '@components/Dropdown';
 
 interface AllProductSectionProps {
-  handleOrderClick: (order: string) => void;
+  handleOrderClick: (nextOrder: 'recent' | 'favorite') => void;
   items: Item[];
   order: string;
 }
