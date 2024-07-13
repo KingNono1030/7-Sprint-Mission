@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
+
+interface LabelInputProps {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  value: string;
+  placeholder: string;
+  type?: 'text' | 'password' | 'email';
+  labelHeader?: string;
+  classNameHeader?: string;
+  classNameInput?: string;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+}
 
 const LabelInput = ({
-  onChange = null,
+  onChange,
   value = '',
   labelHeader = '',
   placeholder = '',
   type = 'text',
-  name = '',
-  visibilityLogo = null,
+  name,
   classNameHeader = '',
   classNameInput = '',
-  onKeyDown = null,
-}) => (
+  onKeyDown,
+}: LabelInputProps) => (
   <label className=''>
     {labelHeader && (
       <h3
@@ -32,7 +43,6 @@ const LabelInput = ({
         required
         onKeyDown={onKeyDown}
       />
-      {visibilityLogo}
     </div>
   </label>
 );

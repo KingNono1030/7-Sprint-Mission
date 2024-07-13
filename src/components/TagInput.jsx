@@ -22,6 +22,7 @@ export default function TagInput({ name, value = [], onChange }) {
   return (
     <>
       <LabelInput
+        name='tag'
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}

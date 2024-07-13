@@ -1,11 +1,8 @@
-export const EMAIL_REGEXP = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-export const PASSWORD_MINIMUM_LENGTH = 8;
+const EMAIL_REGEXP = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+const PASSWORD_MINIMUM_LENGTH = 8;
 
-interface valuesType {
-  email: string;
-  password: string | number;
-  nickname?: string | number;
-  passwordRepeat?: string | number;
+export interface valuesType {
+  [key: string]: string;
 }
 
 export const emailValidation = {

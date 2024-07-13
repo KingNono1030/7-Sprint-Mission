@@ -1,25 +1,44 @@
 import { useState, useEffect } from 'react';
+import { valuesType } from '@utils/validationRules';
 
 interface ValidationRule {
   placeholder: string;
-  regex?: RegExp;
   errorMessage: string;
+  regex?: RegExp;
   minLength?: number;
-  verifyPasswordMatch?: (value: string | number, values: Values) => string;
+  verifyPasswordMatch?: (value: string, values: valuesType) => string;
 }
 
 interface ValidationRules {
   [key: string]: ValidationRule;
 }
 
-interface Values {
-  [key: string]: string;
-}
-
 interface useValidationProps {
-  values: Values;
+  values: valuesType;
   validationRules: ValidationRules;
 }
+
+const validateField = (
+  field: string,
+  value: string,
+  rule: ValidationRule,
+  values: valuesType
+) => {
+  if (!value) {
+    return rule.placeholder;
+  }
+  if (rule.regex && !rule.regex.test(value)) {
+    return rule.errorMessage;
+  }
+  if (rule.minLength && value.length < rule.minLength) {
+    return rule.errorMessage;
+  }
+  if (rule.verifyPasswordMatch) {
+    return rule.verifyPasswordMatch(value, values);
+  }
+  return '';
+};
+
 export const useValidation = ({
   values,
   validationRules,
@@ -27,21 +46,15 @@ export const useValidation = ({
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    const newErrors: { [key: string]: string } = {};
-    for (const [field, rule] of Object.entries(validationRules)) {
-      if (!values[field]) {
-        newErrors[field] = rule.placeholder;
-      } else if (rule.regex && !rule.regex.test(values[field])) {
-        newErrors[field] = rule.errorMessage;
-      } else if (rule.minLength && values[field].length < rule.minLength) {
-        newErrors[field] = rule.errorMessage;
-      } else if (rule.verifyPasswordMatch) {
-        const customError = rule.verifyPasswordMatch(values[field], values);
-        if (customError) {
-          newErrors[field] = customError;
-        }
-      }
-    }
+    const newErrors = Object.entries(validationRules).reduce(
+      (acc, [field, rule]) => {
+        const error = validateField(field, values[field], rule, values);
+        if (error) acc[field] = error;
+        return acc;
+      },
+      {} as { [key: string]: string }
+    );
+
     setErrors(newErrors);
   }, [values, validationRules]);
 

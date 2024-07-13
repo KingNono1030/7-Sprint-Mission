@@ -1,16 +1,26 @@
+import { ChangeEvent } from 'react';
 import useToggle from '../hooks/useToggle';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 
+interface PasswordInputProps {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  value: string;
+  placeholder: string;
+  labelHeader?: string;
+  classNameHeader?: string;
+  classNameInput?: string;
+}
+
 export default function PasswordInput({
   onChange,
-  value = '',
-  labelHeader = '',
-  placeholder = '',
   name = '',
-  visibilityLogo = null,
+  value = '',
+  placeholder = '',
+  labelHeader = '',
   classNameHeader = '',
   classNameInput = '',
-}) {
+}: PasswordInputProps) {
   const [isPasswordVisible, togglePasswordVisibility] = useToggle(false);
   return (
     <label className=''>

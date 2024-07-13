@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '@components/Button';
 import LabelInput from '@components/LabelInput';
 import PasswordInput from '@components/PasswordInput';
 import InputErrorMessage from '@components/InputErrorMessage';
 import { useValidation } from '@hooks/useValidation';
+import { valuesType } from '@utils/validationRules';
 
-const AuthForm = ({
+export interface Field {
+  type: 'email' | 'password' | 'text';
+  name: string;
+  label: string;
+  placeholder: string;
+}
+interface AuthFormProps<T> {
+  initialValues: T;
+  validationRules: { [key: string]: any };
+  onSubmit: (values: T) => void;
+  fields: Field[];
+  title: string;
+}
+
+export default function AuthForm({
   initialValues,
   validationRules,
   onSubmit,
   fields,
   title,
-}) => {
-  const [values, setValues] = useState(initialValues);
+}: AuthFormProps<valuesType>) {
+  const [values, setValues] = useState<valuesType>(initialValues);
   const [isInitialized, setIsInitialized] = useState(false);
   const { errors, isComplete } = useValidation({ values, validationRules });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -25,7 +40,7 @@ const AuthForm = ({
     setIsInitialized(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (isComplete) {
       onSubmit(values);
@@ -37,11 +52,12 @@ const AuthForm = ({
       <form
         onBlur={handleFocusOut}
         onSubmit={handleSubmit}
-        className='mx-auto max-w-[640px]'
+        className={formStyle}
       >
         {fields.map((field) => {
           const InputComponent =
             field.type === 'password' ? PasswordInput : LabelInput;
+
           return (
             <div key={field.name} className='mt-6'>
               <InputComponent
@@ -60,15 +76,16 @@ const AuthForm = ({
         })}
         <Button
           type='submit'
-          disabled={!isComplete}
+          isActive={isComplete}
           size='large'
-          className='w-full my-6'
+          className={buttonStyle}
         >
           {title}
         </Button>
       </form>
     </>
   );
-};
+}
 
-export default AuthForm;
+const formStyle = 'mx-auto max-w-[640px]';
+const buttonStyle = 'w-full my-6';
