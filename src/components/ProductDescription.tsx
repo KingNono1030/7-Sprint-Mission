@@ -1,7 +1,22 @@
-import heartIcon from '../assets/ic-heart.svg';
-import kebabIcon from '../assets/ic-kebab.svg';
+import heartIcon from '@assets/ic-heart.svg';
+import kebabIcon from '@assets/ic-kebab.svg';
 
-export default function ProductDescription({ product }) {
+interface Product {
+  favoriteCount: number;
+  images: string[];
+  tags: string[];
+  name: string;
+  description: string;
+  price: number;
+}
+
+interface ProductDescriptionProps {
+  product: Product;
+}
+
+export default function ProductDescription({
+  product,
+}: ProductDescriptionProps) {
   const { favoriteCount, images, tags, name, description, price } = product;
   const formattedPrice = new Intl.NumberFormat('ko-KR').format(price);
 

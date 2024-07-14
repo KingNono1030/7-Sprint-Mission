@@ -32,7 +32,7 @@ export default function AddItemPage() {
 
   const hanleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formdata = new FormData();
+    // const formdata = new FormData();
   };
 
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {

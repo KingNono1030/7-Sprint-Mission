@@ -1,12 +1,25 @@
-import { useState } from 'react';
-import Button from './Button';
-import emptyInquiryImg from '../assets/img-inquiry-empty.svg';
-import kebabIcon from '../assets/ic-kebab.svg';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import getTimeAgo from '@utils/getTimeAgo';
+import Button from '@components/Button';
+import emptyInquiryImg from '@assets/img-inquiry-empty.svg';
+import kebabIcon from '@assets/ic-kebab.svg';
 
-const PLACEHOLDER =
-  '개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.';
+export interface CommentType {
+  id: string;
+  content: string;
+  createdAt: Date;
+  writer: {
+    id: string;
+    nickname: string;
+    image: string;
+  };
+}
 
-export default function ProductReviews({ comments }) {
+interface ProductReviewsProps {
+  comments: CommentType[];
+}
+
+export default function ProductReviews({ comments }: ProductReviewsProps) {
   const isInquiryEmpty = comments.length === 0;
 
   const getInquiry = () => {
@@ -38,13 +51,14 @@ export default function ProductReviews({ comments }) {
 
 function ReviewsInput() {
   const [value, setValue] = useState('');
-  const isActive = value.length;
-  const handleInputChange = (e) => {
-    const nextValue = e.target.value;
+  const isActive = !!value.length;
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const target = e.target as HTMLTextAreaElement;
+    const nextValue = target.value;
     setValue((prevValue) => nextValue);
   };
 
-  const hanleSubmit = (e) => {
+  const hanleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -79,16 +93,17 @@ function EmptyInquiry() {
   );
 }
 
-function Comment({ comment }) {
+interface CommentProps {
+  comment: CommentType;
+}
+
+function Comment({ comment }: CommentProps) {
   const {
     content,
     createdAt,
-    writer: { id, nickname, image },
+    writer: { nickname, image },
   } = comment;
-  const now = new Date();
-  const createdAtDate = new Date(createdAt);
-  const timeDifference = now - createdAtDate;
-  const hourGap = convertToHour(timeDifference).toLocaleString();
+  const hourGap = getTimeAgo(createdAt);
 
   return (
     <>
@@ -111,6 +126,5 @@ function Comment({ comment }) {
   );
 }
 
-const convertToHour = (timeDifference) => {
-  return Math.ceil(timeDifference / (1000 * 60 * 60));
-};
+const PLACEHOLDER =
+  '개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.';

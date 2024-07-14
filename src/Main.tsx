@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App';
-import LandingPage from './pages/LandingPage';
-import ItemListPage from './pages/ItemListPage.tsx';
-import ItemPage from './pages/ItemPage.jsx';
-import AddItemPage from './pages/AddItemPage';
-import LogInPage from './pages/LogInPage';
-import SignUpPage from './pages/SignUpPage';
-import PageNotFound from './pages/PageNotFound';
+import App from 'App';
+import LandingPage from '@pages/LandingPage';
+import ItemListPage from '@pages/ItemListPage';
+import ItemPage from '@pages/ItemPage';
+import AddItemPage from '@pages/AddItemPage';
+import LogInPage from '@pages/LogInPage';
+import SignUpPage from '@pages/SignUpPage';
+import PageNotFound from '@pages/PageNotFound';
 
 function Main() {
   return (

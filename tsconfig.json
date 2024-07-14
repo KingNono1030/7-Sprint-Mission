@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "outDir": "dist",
+    "outDir": "./configs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
