@@ -1,15 +1,6 @@
-import { ProcessOptions } from 'postcss';
-
-const config: {
-  plugins: {
-    [key: string]: any;
-  };
-  options?: ProcessOptions;
-} = {
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
 };
-
-export default config;

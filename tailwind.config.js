@@ -1,6 +1,5 @@
-import { Config } from 'tailwindcss';
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
@@ -34,5 +33,3 @@ const config: Config = {
   },
   plugins: [],
 };
-
-export default config;

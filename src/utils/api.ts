@@ -1,4 +1,4 @@
-const BASE_URL = 'https://panda-market-api.vercel.app/products';
+import { BASE_URL } from '@config/env';
 
 interface getItemsProps {
   pageSize: number;

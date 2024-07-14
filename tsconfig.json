@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "outDir": "./configs",
+    "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -24,7 +24,8 @@
       "@assets/*": ["assets/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
-      "@font/*": ["font/*"]
+      "@font/*": ["font/*"],
+      "@config/*": ["config/*"]
     },
     "moduleDetection": "force"
   },
