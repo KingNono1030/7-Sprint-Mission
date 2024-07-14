@@ -1,38 +1,41 @@
-import { useState } from 'react';
-import { Helmet } from 'react-helmet';
-import Button from '../components/Button';
-import FileInput from '../components/FileInput';
-import TagInput from '../components/TagInput';
-
-const INITIAL_VALUE = {
-  images: [],
-  name: '',
-  description: '',
-  price: '',
-  tags: [],
-};
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Button from '@components/Button';
+import FileInput from '@components/FileInput';
+import TagInput from '@components/TagInput';
 
 export default function AddItemPage() {
-  const [values, setValues] = useState(INITIAL_VALUE);
-  const isActive =
-    values.name && values.description && values.price && values.tags.length;
+  const [values, setValues] = useState<{
+    images: File[];
+    title: string;
+    description: string;
+    price: string;
+    tags: string[];
+  }>(INITIAL_VALUE);
+  const isActive = !!(
+    values.title &&
+    values.description &&
+    values.price &&
+    values.tags.length
+  );
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     handleChange(name, value);
   };
 
-  const handleChange = (name, value) => {
+  const handleChange = (name: string, value: unknown) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
-  const hanleSubmit = (e) => {
+  const hanleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formdata = new FormData();
-    formdata.append('images');
   };
 
-  const handlePriceChange = (e) => {
+  const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const numberValue = parseFloat(e.target.value.replace(/[^\d.]/g, ''));
     let formattedValue = '';
     if (!isNaN(numberValue)) {
@@ -52,15 +55,11 @@ export default function AddItemPage() {
       <form
         className='flex flex-col items-center gap-4 max-w-[1200px] p-4 m-auto mb-10'
         id='addItemForm'
+        onSubmit={hanleSubmit}
       >
         <div className='flex justify-between items-center w-full'>
           <h2 className='font-bold text-xl'>상품 등록하기</h2>
-          <Button
-            type='submit'
-            form='addItemForm'
-            onSubmit={hanleSubmit}
-            isActive={isActive}
-          >
+          <Button type='submit' form='addItemForm' isActive={isActive}>
             등록
           </Button>
         </div>
@@ -76,8 +75,8 @@ export default function AddItemPage() {
           <h3 className='font-bold text-sm mb-3'>상품명</h3>
           <input
             className='block w-full h-[56px] py-4 px-6 rounded-xl bg-gray-100 placeholder-gray-400'
-            name='name'
-            value={values.name}
+            name='title'
+            value={values.title}
             onChange={handleInputChange}
             type='text'
             placeholder='상품명을 입력해주세요'
@@ -91,7 +90,6 @@ export default function AddItemPage() {
             name='description'
             value={values.description}
             onChange={handleInputChange}
-            type='text'
             placeholder='상품 소개를 입력해주세요'
             required
           ></textarea>
@@ -116,3 +114,11 @@ export default function AddItemPage() {
     </>
   );
 }
+
+const INITIAL_VALUE = {
+  images: [],
+  title: '',
+  description: '',
+  price: '',
+  tags: [],
+};

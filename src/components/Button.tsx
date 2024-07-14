@@ -12,6 +12,7 @@ interface ButtonProps {
   isActive?: boolean;
   size?: Size;
   color?: Color;
+  form?: string;
 }
 
 export default function Button({
@@ -22,6 +23,7 @@ export default function Button({
   isActive = true,
   size = 'small',
   color = 'primary',
+  form,
 }: ButtonProps) {
   const buttonSizeStyle = styleBySize[size];
   const buttonColorStyle = styleByColor[color];
@@ -37,6 +39,7 @@ export default function Button({
       type={type}
       onClick={onClick}
       disabled={!isActive}
+      form={form}
     >
       {children}
     </button>

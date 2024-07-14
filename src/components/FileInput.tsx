@@ -1,15 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 
-export default function FileInput({ name, value = [], onChange }) {
-  const [previews, setPreviews] = useState([]);
+interface FileInputProps {
+  name: string;
+  value: File[];
+  onChange: (name: string, value: File[]) => void;
+}
 
-  const handleChange = (e) => {
-    const nextValue = e.target.files[0];
-    onChange(name, [...value, nextValue]);
+export default function FileInput({
+  name,
+  value = [],
+  onChange,
+}: FileInputProps) {
+  const [previews, setPreviews] = useState<string[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    if (target.files) {
+      const nextValue = target.files[0];
+      onChange(name, [...value, nextValue]);
+    }
   };
 
-  const handleDelete = (e) => {
-    const targetPreview = e.target.id;
+  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement;
+    const targetPreview = target.id;
     const targetIndex = previews.indexOf(targetPreview);
     onChange(name, [
       ...value.slice(0, targetIndex),
@@ -22,7 +36,7 @@ export default function FileInput({ name, value = [], onChange }) {
     setPreviews((prevPreviews) => [...nextPreviews]);
 
     return () => {
-      value.forEach((item) => URL.revokeObjectURL(item));
+      nextPreviews.forEach((preview) => URL.revokeObjectURL(preview));
     };
   }, [value]);
 

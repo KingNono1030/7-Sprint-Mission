@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import useToggle from '../hooks/useToggle';
-import PasswordVisibilityButton from './PasswordVisibilityButton';
+import useToggle from '@hooks/useToggle';
+import PasswordVisibilityButton from '@components/PasswordVisibilityButton';
 
 interface PasswordInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;

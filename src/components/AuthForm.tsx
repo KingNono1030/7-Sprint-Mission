@@ -2,7 +2,6 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '@components/Button';
 import LabelInput from '@components/LabelInput';
 import PasswordInput from '@components/PasswordInput';
-import InputErrorMessage from '@components/InputErrorMessage';
 import { useValidation } from '@hooks/useValidation';
 import { valuesType } from '@utils/validationRules';
 
@@ -69,7 +68,9 @@ export default function AuthForm({
                 name={field.name}
               />
               {isInitialized && errors[field.name] && (
-                <InputErrorMessage>{errors[field.name]}</InputErrorMessage>
+                <div className='mt-2 mb-6 ml-4 font-semibold text-base text-red-700'>
+                  {errors[field.name]}
+                </div>
               )}
             </div>
           );

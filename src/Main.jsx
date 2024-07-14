@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import LandingPage from './pages/LandingPage';
-import ItemListPage from './pages/ItemListPage';
+import ItemListPage from './pages/ItemListPage.tsx';
 import ItemPage from './pages/ItemPage.jsx';
 import AddItemPage from './pages/AddItemPage';
 import LogInPage from './pages/LogInPage';
