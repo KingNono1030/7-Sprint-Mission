@@ -10,7 +10,7 @@ module.exports = {
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@font': path.resolve(__dirname, 'src/font'),
-      '@config': path.resolve(__dirname, 'src/config'),
+      '@configs': path.resolve(__dirname, 'src/configs'),
     },
   },
 };

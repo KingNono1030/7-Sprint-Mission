@@ -25,7 +25,7 @@
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"],
       "@font/*": ["font/*"],
-      "@config/*": ["config/*"]
+      "@configs/*": ["configs/*"]
     },
     "moduleDetection": "force"
   },
