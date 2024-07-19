@@ -78,7 +78,7 @@ const toggleBaseStyle =
   'flex justify-center md:justify-between items-center md:w-full w-[42px] h-[42px] md:py-3 md:px-5 rounded-xl border border-solid border-gray-200 shadow-sm bg-white hover:bg-gray-50';
 
 const menuBaseStyle =
-  'absolute right-0 mt-2 w-[130px] rounded-xl border border-solid border-gray-200 shadow-lg bg-white';
+  'absolute right-0 mt-2 w-[130px] rounded-xl border border-solid border-gray-200 shadow-lg bg-white z-10';
 
 const itemBaseStyle =
   'flex justify-center items-center px-4 py-2 hover:bg-gray-100 cursor-pointer';
