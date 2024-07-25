@@ -58,10 +58,12 @@ export async function getStaticProps() {
   }
 }
 
+type sortOrder = 'recent' | 'like';
+
 interface Options {
   page: number;
   pageSize: number;
-  order: 'recent' | 'like';
+  order: sortOrder;
   keyword: string;
 }
 
@@ -72,7 +74,7 @@ export default function BoardsPage({
   const [posts, setPosts] = useState<Post[]>(allPosts);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [order, setOrder] = useState<'recent' | 'like'>('recent');
+  const [order, setOrder] = useState<sortOrder>('recent');
   const [keyword, setKeyword] = useState('');
 
   const inputRef = useRef(null);
