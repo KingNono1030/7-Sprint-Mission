@@ -71,19 +71,19 @@ const Item = ({
   );
 };
 
-const containerBaseStyle =
+const containerBaseStyle: string =
   'relative w-[42px] md:w-[130px] text-base font-normal text-gray-800';
 
-const toggleBaseStyle =
+const toggleBaseStyle: string =
   'flex justify-center md:justify-between items-center md:w-full w-[42px] h-[42px] md:py-3 md:px-5 rounded-xl border border-solid border-gray-200 shadow-sm bg-white hover:bg-gray-50';
 
-const menuBaseStyle =
+const menuBaseStyle: string =
   'absolute right-0 mt-2 w-[130px] rounded-xl border border-solid border-gray-200 shadow-lg bg-white z-10';
 
-const itemBaseStyle =
+const itemBaseStyle: string =
   'flex justify-center items-center px-4 py-2 hover:bg-gray-100 cursor-pointer';
 
-const styleByPosition = {
+const styleByPosition: Record<Position, string> = {
   first: 'rounded-t-xl border-b border-solid border-gray-200',
   last: 'rounded-b-xl',
   middle: 'border-b border-solid border-gray-200',

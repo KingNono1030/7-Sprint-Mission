@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { debounce } from 'lodash';

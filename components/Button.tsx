@@ -46,15 +46,15 @@ export default function Button({
   );
 }
 
-const buttonBaseStyle = `flex justify-center items-center gap-2  disabled:bg-gray-400  font-semibold`;
+const buttonBaseStyle: string = `flex justify-center items-center gap-2  disabled:bg-gray-400  font-semibold`;
 
-const styleBySize = {
+const styleBySize: Record<Size, string> = {
   large: 'px-[128px] h-[56px] text-xl rounded-full',
   medium: 'w-[240px] h-[48px] text-lg rounded-full',
   small: 'px-6 h-[42px] text-base rounded-lg',
 };
 
-const styleByColor = {
+const styleByColor: Record<Color, string> = {
   primary: 'bg-blue-primary hover:bg-blue-600 text-white',
   secondary: 'bg-white text-blue border border-solid border-blue',
 };
