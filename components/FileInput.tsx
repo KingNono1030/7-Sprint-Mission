@@ -1,82 +1,72 @@
-import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
+import Icons from '@/components/Icons';
 interface FileInputProps {
-  name: string;
-  value: File[];
-  onChange: (name: string, value: File[]) => void;
+  onChange: (value: File | null) => void;
+  value: File | null;
 }
 
-export default function FileInput({
-  name,
-  value = [],
-  onChange,
-}: FileInputProps) {
-  const [previews, setPreviews] = useState<string[]>([]);
+export default function FileInput({ onChange, value }: FileInputProps) {
+  const imgInputRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState<string>('');
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement;
-    if (target.files) {
-      const nextValue = target.files[0];
-      onChange(name, [...value, nextValue]);
+  const handleChange = () => {
+    if (imgInputRef.current) {
+      const nextValue = imgInputRef.current.files?.[0];
+      if (nextValue === undefined) return;
+      onChange(nextValue);
     }
   };
-
-  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLButtonElement;
-    const targetPreview = target.id;
-    const targetIndex = previews.indexOf(targetPreview);
-    onChange(name, [
-      ...value.slice(0, targetIndex),
-      ...value.slice(targetIndex + 1),
-    ]);
+  const handleDelete = () => {
+    onChange(null);
   };
 
   useEffect(() => {
-    const nextPreviews = value.map(item => URL.createObjectURL(item));
-    setPreviews(prevPreviews => [...nextPreviews]);
-
+    if (value) {
+      const nextPreview = URL.createObjectURL(value);
+      setPreview(() => nextPreview);
+    } else {
+      setPreview('');
+    }
     return () => {
-      nextPreviews.forEach(preview => URL.revokeObjectURL(preview));
+      URL.revokeObjectURL(preview);
+      setPreview('');
     };
   }, [value]);
 
   return (
-    <>
+    <ul className="flex flex-wrap gap-2">
       <input
+        name="image"
+        className="hidden"
         id="fileinput"
         onChange={handleChange}
         type="file"
-        style={{ display: 'none' }}
+        ref={imgInputRef}
       />
-      <ul className="flex flex-wrap gap-2">
-        <label
-          className="flex h-[168px] w-[168px] flex-col items-center justify-between gap-3 rounded-xl bg-gray-100 py-[42px] text-gray-400"
-          htmlFor="fileinput"
-        >
-          <div className="text-5xl">+</div>
-          이미지 등록
-        </label>
-        {previews[0] &&
-          previews.map(item => {
-            return (
-              <li className="shadow-custom-light relative" key={item}>
-                <img
-                  className="h-[168px] w-[168px] rounded-xl object-cover"
-                  src={item}
-                  alt="이미지 미리보기"
-                />
-                <button
-                  className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-gray-400 text-xs font-black text-white"
-                  id={item}
-                  type="button"
-                  onClick={handleDelete}
-                >
-                  X
-                </button>
-              </li>
-            );
-          })}
-      </ul>
-    </>
+      <label
+        className="flex h-[168px] w-[168px] cursor-pointer flex-col items-center justify-between gap-3 rounded-xl bg-gray-100 py-[42px] text-gray-400"
+        htmlFor="fileinput"
+      >
+        <Icons.Plus />
+        이미지 등록
+      </label>
+      {preview && (
+        <li className="shadow-custom-light relative">
+          <img
+            className="h-[168px] w-[168px] rounded-xl object-cover"
+            src={preview}
+            alt="이미지 미리보기"
+          />
+          <button
+            className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-gray-400 text-xs font-black text-white"
+            id={preview}
+            type="button"
+            onClick={handleDelete}
+          >
+            X
+          </button>
+        </li>
+      )}
+    </ul>
   );
 }

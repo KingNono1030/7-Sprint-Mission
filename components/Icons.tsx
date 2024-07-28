@@ -114,6 +114,30 @@ function Heart(svgProps: SVGProps<SVGSVGElement>) {
   );
 }
 
+function Plus(svgProps: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...svgProps}
+    >
+      <path
+        d="M10 24H38"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M24 38V10"
+        stroke="currentColor"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 const Icons = {
   Medal,
   Sort,
@@ -121,6 +145,7 @@ const Icons = {
   Search,
   CaretDown,
   Heart,
+  Plus,
 };
 
 export default Icons;

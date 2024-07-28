@@ -94,7 +94,6 @@ export default function BoardsPage({
 
   const debouncedSearch = useCallback(
     debounce((value: string): void => {
-      console.log('검색 키워드:', value);
       setKeyword(() => value);
     }, 300),
     []
