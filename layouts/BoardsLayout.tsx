@@ -32,7 +32,7 @@ export default function BoardsLayout({ children }: BoardsLayoutProps) {
         <span className="sr-only">전체 게시글</span>
         <div className="mb-4 flex items-center justify-between md:mb-12 xl:mb-6">
           <h2 className="text-lg font-bold text-gray-900 md:text-xl">게시글</h2>
-          <Link href="#">
+          <Link href="/addboard">
             <Button>글쓰기</Button>
           </Link>
         </div>

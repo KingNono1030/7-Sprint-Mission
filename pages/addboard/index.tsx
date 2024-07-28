@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, FormEvent } from 'react';
 import Head from 'next/head';
 import { debounce } from 'lodash';
 import axiosInstance from '@/lib/axios';
@@ -8,22 +8,22 @@ import Button from '@/components/Button';
 
 interface Values {
   title: string;
-  description: string;
+  content: string;
   image: File | null;
 }
 
 const INITIAL_VALUES: Values = {
   title: '',
-  description: '',
+  content: '',
   image: null,
 };
 
 export default function AddBoardPage() {
   const [values, setValues] = useState<Values>(INITIAL_VALUES);
   const titleInputRef = useRef<HTMLInputElement>(null);
-  const descInputRef = useRef<HTMLTextAreaElement>(null);
+  const contentInputRef = useRef<HTMLTextAreaElement>(null);
 
-  const isActive = !!(values.title && values.description);
+  const isActive = !!(values.title && values.content);
 
   const debouncedInput = useCallback(
     debounce((name: string, value: string | File | null): void => {
@@ -43,8 +43,8 @@ export default function AddBoardPage() {
         case 'title':
           value = titleInputRef.current?.value || '';
           break;
-        case 'description':
-          value = descInputRef.current?.value || '';
+        case 'content':
+          value = contentInputRef.current?.value || '';
           break;
         default:
           break;
@@ -53,7 +53,10 @@ export default function AddBoardPage() {
     };
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log(values);
+  };
 
   return (
     <>
@@ -61,7 +64,7 @@ export default function AddBoardPage() {
         <title>판다 마켓 | 게시글 등록</title>
       </Head>
       <CommonLayout>
-        <form className="mb-10" id="addPostForm" onSubmit={}>
+        <form className="mb-10" id="addPostForm" onSubmit={handleSubmit}>
           <div className="mb-6 flex w-full items-center justify-between">
             <h2 className="text-xl font-bold">게시글 등록하기</h2>
             <Button type="submit" form="addPostForm" isActive={isActive}>
@@ -83,12 +86,12 @@ export default function AddBoardPage() {
           <label className="mb-4 block w-full">
             <h3 className="mb-3 text-sm font-bold">*내용</h3>
             <textarea
-              onChange={handleChange('description')}
+              onChange={handleChange('content')}
               className="block h-[56px] min-h-[200px] w-full resize-none rounded-xl bg-gray-100 px-6 py-4 placeholder-gray-400 md:min-h-[282px]"
-              name="description"
+              name="content"
               placeholder="내용을 입력해주세요"
               required
-              ref={descInputRef}
+              ref={contentInputRef}
             ></textarea>
           </label>
           <label className="mb-4 block w-full">
