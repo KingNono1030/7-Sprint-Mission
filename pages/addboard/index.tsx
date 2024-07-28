@@ -9,7 +9,7 @@ import Button from '@/components/Button';
 interface Values {
   title: string;
   description: string;
-  image?: File | null;
+  image: File | null;
 }
 
 const INITIAL_VALUES: Values = {
@@ -53,13 +53,15 @@ export default function AddBoardPage() {
     };
   };
 
+  const handleSubmit = () => {};
+
   return (
     <>
       <Head>
         <title>판다 마켓 | 게시글 등록</title>
       </Head>
       <CommonLayout>
-        <form className="mb-10" id="addPostForm">
+        <form className="mb-10" id="addPostForm" onSubmit={}>
           <div className="mb-6 flex w-full items-center justify-between">
             <h2 className="text-xl font-bold">게시글 등록하기</h2>
             <Button type="submit" form="addPostForm" isActive={isActive}>

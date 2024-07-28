@@ -51,7 +51,7 @@ export default function FileInput({ onChange, value }: FileInputProps) {
         이미지 등록
       </label>
       {preview && (
-        <li className="shadow-custom-light relative">
+        <div className="shadow-custom-light relative">
           <img
             className="h-[168px] w-[168px] rounded-xl object-cover"
             src={preview}
@@ -59,13 +59,12 @@ export default function FileInput({ onChange, value }: FileInputProps) {
           />
           <button
             className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-gray-400 text-xs font-black text-white"
-            id={preview}
             type="button"
             onClick={handleDelete}
           >
             X
           </button>
-        </li>
+        </div>
       )}
     </ul>
   );
